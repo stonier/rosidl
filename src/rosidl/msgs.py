@@ -358,8 +358,10 @@ def _init():
         return
 
     fname = '%s%s'%(HEADER, EXT)
-#    rosidl_dir = rosidl.packages.get_pkg_dir('rosidl')
-    rosidl_dir = rosidl.__path__[0]
+    #
+    # FIXME this assumes that Header, etc are in ../../msg/Header
+    #
+    rosidl_dir = os.path.dirname(os.path.dirname(rosidl.__path__[0]))
 
     if rosidl_dir is None:
         raise MsgSpecException("Unable to locate rosidl: %s files cannot be loaded"%EXT)
@@ -421,8 +423,8 @@ def msg_file(package, type_, searchpath):
         if os.path.isfile(j):
             return j
 
-    return rosidl.__path__[0] + "/msg/" + type_ + ".msg"
-        #False #rosidl.packages.resource_file(package, rosidl.packages.MSG_DIR, type_+EXT)
+    # FIXME: 'hardcoded' path
+    return os.path.dirname(os.path.dirname(rosidl.__path__[0])) + "/msg/" + type_ + ".msg"
 
 def get_pkg_msg_specs(package):
     """

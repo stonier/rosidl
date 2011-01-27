@@ -164,7 +164,7 @@ class Special:
             return None
         
 _SPECIAL_TYPES = {
-    rosidl.msgs.HEADER:   Special('roslib.msg._Header.Header()',         None,   'import roslib.msg'),
+    rosidl.msgs.HEADER:   Special('std_msgs.msg._Header.Header()',         None,   'import std_msgs.msg'),
     rosidl.msgs.TIME:     Special('roslib.rostime.Time()',     '%s.canon()', 'import roslib.rostime'),
     rosidl.msgs.DURATION: Special('roslib.rostime.Duration()', '%s.canon()', 'import roslib.rostime'), 
     }
